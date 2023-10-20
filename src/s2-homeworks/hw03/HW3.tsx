@@ -1,10 +1,8 @@
-import {SetStateAction} from 'react'
-import {Dispatch} from 'react'
-import React, { useState } from 'react'
-import { v1 } from 'uuid'
+import React, {Dispatch, SetStateAction, useState} from 'react'
+import {v1} from 'uuid'
 import s2 from '../../s1-main/App.module.css'
-import User from '../hw08/User'
 import GreetingContainer from './GreetingContainer'
+
 
 /*
 * 1 - описать тип UserType ++++++++
@@ -22,43 +20,43 @@ import GreetingContainer from './GreetingContainer'
 
 // types
 export type UserType = {
-    _id: string
-    name: string
+  _id: string
+  name: string
 }
 
 export const pureAddUserCallback = (name: string, setUsers: Dispatch<SetStateAction<UserType[]>>, users: UserType[]) => {
-    const user = {
-        _id: v1(),
-        name
-    }
-    setUsers([...users, user])
+  const user = {
+    _id: v1(),
+    name
+  }
+  setUsers([...users, user])
 }
 
 const HW3 = () => {
-    const [users, setUsers] = useState<UserType[]>([
-       {
-          name: 'Serega',
-          _id: v1()
-       }
-    ])
-
-    const addUserCallback = (name: string) => {
-        pureAddUserCallback(name, setUsers, users)
+  const [users, setUsers] = useState<UserType[]>([
+    {
+      name: 'Serega',
+      _id: v1()
     }
+  ])
 
-    return (
-       <div id={'hw3'}>
-           <div className={s2.hwTitle}>Homework #3</div>
-           {/*для автоматической проверки дз (не менять)*/}
+  const addUserCallback = (name: string) => {
+    pureAddUserCallback(name, setUsers, users)
+  }
 
-           <div className={s2.hw}>
-               <GreetingContainer
-                  users={users}
-                  addUserCallback={addUserCallback}
-               />
-           </div>
-       </div>
-    )
+  return (
+    <div id={'hw3'}>
+      <div className={s2.hwTitle}>Homework #3</div>
+      {/*для автоматической проверки дз (не менять)*/}
+
+      <div className={s2.hw}>
+        <GreetingContainer
+          users={users}
+          addUserCallback={addUserCallback}
+        />
+      </div>
+    </div>
+  )
 }
 
 export default HW3
