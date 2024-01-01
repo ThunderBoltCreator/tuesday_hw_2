@@ -13,7 +13,6 @@ export type SuperSortPropsType = {
 }
 
 export const pureChange = (sort: string, down: string, up: string) => {
-	// пишет студент, sort: (click) => down (click) => up (click) => '' (click) => down ...
 	let firstSortValues = sort[0] + sort[1]
 	let firstDownValues = down[0] + down[1]
 	let firstUpValues = up[0] + up[1]
@@ -34,7 +33,6 @@ const SuperSort: React.FC<SuperSortPropsType> = ({
 }) => {
 	const up = '0' + value
 	const down = '1' + value
-
 	const onChangeCallback = () => {
 		onChange(pureChange(sort, down, up))
 	}

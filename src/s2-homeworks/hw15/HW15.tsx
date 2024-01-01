@@ -55,51 +55,36 @@ const HW15 = () => {
 				setTotalCount(res.data.totalCount)
 			}
 			setLoading(false)
-			// делает студент
-			// сохранить пришедшие данные
-			//
 		})
 	}
 
 	const onChangePagination = (newPage: number, newCount: number) => {
-		// делает студент
 		setPage(newPage)
 		setCount(newCount)
-		// setPage(
-		// setCount(
-		// sendQuery()
-		// sendQuery(
-		// setSearchParams(
 		setSearchParams([
 			['page', newPage.toString()],
 			['count', newCount.toString()],
 			['sort', sort],
 		])
-		//
 	}
 
 	const onChangeSort = (newSort: string) => {
-		// делает студент
-		// setSort(
 		setSort(newSort)
-		// setPage(1) // при сортировке сбрасывать на 1 страницу
-		setPage(1)
-		// sendQuery(
-		// setSearchParams(
+		setPage(1) // при сортировке сбрасывать на 1 страницу
 		setSearchParams([
 			['page', '1'],
 			['count', count.toString()],
 			['sort', newSort],
 		])
-		//
 	}
 
 	useEffect(() => {
 		const params = Object.fromEntries(searchParams)
-		sendQuery({ page: params.page, count: params.count })
+		console.log(params)
+		sendQuery(params)
 		setPage(+params.page || 1)
 		setCount(+params.count || 4)
-	}, [])
+	}, [searchParams])
 
 	const mappedTechs = techs.map(t => (
 		<div key={t.id} className={s.row}>
